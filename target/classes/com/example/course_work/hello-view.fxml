@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="434.0" prefWidth="495.0" spacing="20.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_work.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+   <children>
+      <Pane prefHeight="497.0" prefWidth="752.0">
+         <children>
+            <ListView layoutX="-19.0" layoutY="-21.0" prefHeight="451.0" prefWidth="182.0" style="-fx-background-color: f39c63;" />
+            <Button fx:id="AddNum" layoutX="-9.0" layoutY="368.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: #d38686;" text="Добавить контакт" />
+         </children>
+      </Pane>
+   </children>
+</VBox>
