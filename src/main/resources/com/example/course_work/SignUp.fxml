@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_work.SignUpController">
+    <children>
+        <Pane prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #2E3348;">
+            <children>
+                <TextField fx:id="LoginField" layoutX="172.0" layoutY="104.0" prefHeight="44.0" prefWidth="264.0" promptText="Имя" />
+                <TextField fx:id="PasswordField" layoutX="172.0" layoutY="166.0" prefHeight="44.0" prefWidth="264.0" promptText="Пароль" />
+                <Button fx:id="SignUpButton" layoutX="172.0" layoutY="312.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="264.0" style="-fx-background-color: #d38686;" text="Войти">
+                    <font>
+                        <Font name="Arial" size="19.0" />
+                    </font></Button>
+                <Button fx:id="RegisterButton" layoutX="410.0" layoutY="30.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="161.0" style="-fx-background-color: #d38686;" text="Регистрация" />
+            </children>
+        </Pane>
+    </children>
+</VBox>

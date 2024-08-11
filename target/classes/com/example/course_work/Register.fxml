@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_work.RegisterController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E3348;">
+            <children>
+                <TextField fx:id="NameField" layoutX="172.0" layoutY="104.0" prefHeight="44.0" prefWidth="264.0" promptText="Имя" />
+                <TextField fx:id="PasswordField" layoutX="172.0" layoutY="166.0" prefHeight="44.0" prefWidth="264.0" promptText="Пароль" />
+                <Button fx:id="RegApplyButton" layoutX="172.0" layoutY="312.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="264.0" style="-fx-background-color: #d38686;" text="Зарегистрироваться" />
+                <TextField fx:id="PasswordRepeatField" layoutX="172.0" layoutY="229.0" prefHeight="44.0" prefWidth="264.0" promptText="Подтверждение пароля" />
+            </children>
+        </Pane>
+    </children>
+</VBox>
