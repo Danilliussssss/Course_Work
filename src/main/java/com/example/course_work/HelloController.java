@@ -17,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class HelloController {
@@ -26,7 +28,8 @@ public class HelloController {
 
     @FXML
     private URL location;
-
+    @FXML
+private TextArea Message;
     @FXML
     private Button AddNum;
     @FXML
@@ -36,8 +39,10 @@ public class HelloController {
     private boolean position = false ;
     @FXML
     void initialize() {
+
       AddNum.setOnAction(actionEvent -> {
         AddNum.getScene().getWindow().hide();
+
           FXMLLoader Loader = new FXMLLoader(HelloController.class.getResource("Add_Contact.fxml"));
           try {
               Scene scene = new Scene(Loader.load(),501,442);
