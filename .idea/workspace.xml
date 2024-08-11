@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Add all files and repository">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added Database, Registration,Sign up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/course_work/Add_Contact.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/course_work/Add_Contact.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/course_work/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/course_work/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/Add_Contact.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/Add_Contact.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722964083479</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added Database, Registration,Sign up">
+      <option name="closed" value="true" />
+      <created>1723355791383</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1723355791383</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -267,6 +282,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add files and repository" />
     <MESSAGE value="Add all files and repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add all files and repository" />
+    <MESSAGE value="Added Database, Registration,Sign up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Database, Registration,Sign up" />
   </component>
 </project>
