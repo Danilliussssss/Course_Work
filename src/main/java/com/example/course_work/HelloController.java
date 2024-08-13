@@ -14,11 +14,10 @@ import Animation.Shake;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class HelloController {
@@ -31,9 +30,15 @@ public class HelloController {
     @FXML
 private TextArea Message;
     @FXML
+    private Button SendButton;
+    @FXML
+    private Label MessageLabel;
+    @FXML
     private Button AddNum;
     @FXML
     private Button MenuButton;
+    @FXML
+    private FlowPane PaneMessage;
     @FXML
     private ListView ListPanel;
     private boolean position = false ;
@@ -55,24 +60,45 @@ private TextArea Message;
           }
 
       });
+      SendButton.setOnAction(actionEvent -> {
+
+          MessageLabel =  new Label();
+
+          MessageLabel.setWrapText(true);
+          MessageLabel.setStyle("-fx-text-fill: white;");
+
+          MessageLabel.setText(Message.getText());
+
+         MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
+         MessageLabel.setPrefHeight(PaneMessage.getPrefHeight());
+         ScaleTransition scaleTransition = new ScaleTransition(MessageLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
+          scaleTransition.Play();
+         FlowPane.setMargin(MessageLabel,new Insets(0,0,0,25) );
+         PaneMessage.setVgap(10);
+        PaneMessage.getChildren().addAll(MessageLabel);
+         MessageLabel.setManaged(true);
+
+         MessageLabel.setVisible(true);
+         System.out.println(MessageLabel.getText());
+      });
       MenuButton.setOnAction(actionEvent -> {
           double Trans;
          if(position)
            Trans   = 120f;
          else Trans = -120f;
 
-          ScaleTransition scaleTransitionPanel = new ScaleTransition(ListPanel,Trans);
-          ScaleTransition scaleTransitionButton = new ScaleTransition(MenuButton,Trans);
+          ScaleTransition scaleTransitionPanel = new ScaleTransition(ListPanel,Trans,0,0,0);
+          ScaleTransition scaleTransitionButton = new ScaleTransition(MenuButton,Trans,0,0,0);
           scaleTransitionPanel.Play();
           scaleTransitionButton.Play();
           position = !position;
           if(position) {
 
-              ScaleTransition scaleTransition = new ScaleTransition(AddNum,-200f);
+              ScaleTransition scaleTransition = new ScaleTransition(AddNum,-200f,0,0,0);
               scaleTransition.Play();
           }
           else{
-              ScaleTransition scaleTransition = new ScaleTransition(AddNum,200f);
+              ScaleTransition scaleTransition = new ScaleTransition(AddNum,200f,0,0,0);
               scaleTransition.Play();
           }
          
