@@ -70,7 +70,7 @@ private TextArea Message;
           MessageLabel.setText(Message.getText());
 
          MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
-         MessageLabel.setPrefHeight(PaneMessage.getPrefHeight());
+         MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
          ScaleTransition scaleTransition = new ScaleTransition(MessageLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
           scaleTransition.Play();
          FlowPane.setMargin(MessageLabel,new Insets(0,0,0,25) );
