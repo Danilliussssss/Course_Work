@@ -63,22 +63,31 @@ private TextArea Message;
       SendButton.setOnAction(actionEvent -> {
 
           MessageLabel =  new Label();
-
+          Label UserNameLabel = new Label("Вы");
+          UserNameLabel.setWrapText(true);
+          UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
           MessageLabel.setWrapText(true);
           MessageLabel.setStyle("-fx-text-fill: white;");
 
           MessageLabel.setText(Message.getText());
-
+          UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
+         UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
          MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
          MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
          ScaleTransition scaleTransition = new ScaleTransition(MessageLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
           scaleTransition.Play();
-         FlowPane.setMargin(MessageLabel,new Insets(0,0,0,25) );
+          ScaleTransition scaleTransitionUserName = new ScaleTransition(UserNameLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
+          scaleTransition.Play();
+          scaleTransitionUserName.Play();
+         FlowPane.setMargin(MessageLabel,new Insets(-10,0,0,25) );
+          FlowPane.setMargin(UserNameLabel,new Insets(0,0,0,25) );
          PaneMessage.setVgap(10);
-        PaneMessage.getChildren().addAll(MessageLabel);
+        PaneMessage.getChildren().addAll(UserNameLabel,MessageLabel);
          MessageLabel.setManaged(true);
+         UserNameLabel.setManaged(true);
 
          MessageLabel.setVisible(true);
+          UserNameLabel.setVisible(true);
          System.out.println(MessageLabel.getText());
       });
       MenuButton.setOnAction(actionEvent -> {
