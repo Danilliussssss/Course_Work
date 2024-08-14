@@ -8,7 +8,7 @@ public class ScaleTransition {
     private TranslateTransition tt;
     public ScaleTransition(Node node,double transX,double transY,double FromBorderY,double ToBorderY)
     {
-        tt = new TranslateTransition(Duration.millis(1000),node);
+        tt = new TranslateTransition(Duration.millis(500),node);
         tt.setByX(transX);
         tt.setByY(transY);
         tt.setCycleCount(1);

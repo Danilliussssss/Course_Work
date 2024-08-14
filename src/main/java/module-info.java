@@ -4,6 +4,7 @@ module com.example.course_work {
     requires javafx.graphics;
     requires java.desktop;
     requires java.sql;
+    requires com.google.protobuf;
 
 
     opens com.example.course_work to javafx.fxml;

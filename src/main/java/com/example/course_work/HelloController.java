@@ -1,6 +1,7 @@
 package com.example.course_work;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,6 +23,8 @@ import javafx.stage.Stage;
 
 public class HelloController {
 
+
+URL url = new URL("http://localhost:3500");
     @FXML
     private ResourceBundle resources;
 
@@ -42,6 +45,10 @@ private TextArea Message;
     @FXML
     private ListView ListPanel;
     private boolean position = false ;
+
+    public HelloController() throws MalformedURLException {
+    }
+
     @FXML
     void initialize() {
 
@@ -62,6 +69,7 @@ private TextArea Message;
       });
       SendButton.setOnAction(actionEvent -> {
 
+
           MessageLabel =  new Label();
           Label UserNameLabel = new Label("Вы");
           UserNameLabel.setWrapText(true);
@@ -70,6 +78,14 @@ private TextArea Message;
           MessageLabel.setStyle("-fx-text-fill: white;");
 
           MessageLabel.setText(Message.getText());
+          try {
+              Server server = new Server();
+
+              server.send_message(Message.getText());
+
+          } catch (IOException e) {
+              throw new RuntimeException(e);
+          }
           UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
          UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
          MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
@@ -88,7 +104,8 @@ private TextArea Message;
 
          MessageLabel.setVisible(true);
           UserNameLabel.setVisible(true);
-         System.out.println(MessageLabel.getText());
+
+
       });
       MenuButton.setOnAction(actionEvent -> {
           double Trans;

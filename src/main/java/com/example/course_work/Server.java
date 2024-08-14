@@ -1,0 +1,40 @@
+package com.example.course_work;
+
+import javafx.concurrent.Service;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import javax.xml.*;
+
+
+public class Server {
+   URL url = new URL("http://localhost:3500/");
+    HttpURLConnection connection;
+
+    public Server() throws IOException {
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestProperty("Content-Type","text/plain; charset=UTF-8");
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+
+        connection.connect();
+    }
+    public void send_message(String message) throws IOException {
+        byte[] msgbyte =  message.getBytes("UTF-8");
+        OutputStream OS = connection.getOutputStream();
+        OS.write(msgbyte,0,msgbyte.length);
+        OS.flush();
+        int ResCode = connection.getResponseCode();
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
+        StringBuilder response = new StringBuilder();
+        String inputLine;
+        while((inputLine = in.readLine())!=null)
+            response.append(inputLine);
+        in.close();
+        System.out.println(response.toString());
+
+    }
+}

@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added animation send message v2(final)">
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added Name of send message user">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Animation/ScaleTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Animation/ScaleTransition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Animation/ScaleTransition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Animation/ScaleTransition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723520435373</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added Name of send message user">
+      <option name="closed" value="true" />
+      <created>1723535011227</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1723535011227</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,6 +331,7 @@
     <MESSAGE value="Added send Button, TextArea for message" />
     <MESSAGE value="Added animation send message v1" />
     <MESSAGE value="Added animation send message v2(final)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added animation send message v2(final)" />
+    <MESSAGE value="Added Name of send message user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Name of send message user" />
   </component>
 </project>
