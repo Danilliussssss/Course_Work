@@ -10,7 +10,7 @@ import javax.xml.*;
 
 
 public class Server {
-   URL url = new URL("http://localhost:3500/");
+   URL url = new URL("http://192.168.0.102:3500/");
     HttpURLConnection connection;
 
     public Server() throws IOException {
