@@ -25,7 +25,7 @@ public class Server {
     public void send_message(String message) throws IOException {
         byte[] msgbyte =  message.getBytes("UTF-8");
         OutputStream OS = connection.getOutputStream();
-        OS.write(msgbyte,0,msgbyte.length);
+        OS.write(msgbyte, 0,msgbyte.length);
         OS.flush();
         int ResCode = connection.getResponseCode();
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
