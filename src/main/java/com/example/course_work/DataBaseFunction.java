@@ -17,13 +17,13 @@ public class DataBaseFunction extends DatabaseConfig
         DBConnect = DriverManager.getConnection(connectionString,username,password);
         return DBConnect;
     }
-    public boolean WriteToDB(String name,String password){
+    public boolean WriteToDB(User user){
 String insert = "INSERT INTO "+Const.USER_TABLE+"("+Const.USERS_NAME+","+Const.PASSWORD+")"+"VALUES(?,?)";
 
         try {
             PreparedStatement PrepStat = getDBConnect().prepareStatement(insert);
-            PrepStat.setString(1,name);
-            PrepStat.setString(2,password);
+            PrepStat.setString(1,user.getName());
+            PrepStat.setString(2,user.getPassword());
             PrepStat.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -36,6 +36,23 @@ String insert = "INSERT INTO "+Const.USER_TABLE+"("+Const.USERS_NAME+","+Const.P
 
     public  ResultSet getUserData(String name,String password) {
 ResultSet ResSet = null;
+        String select = "SELECT * FROM "+Const.USER_TABLE+" WHERE "+Const.USERS_NAME+"=? AND "+Const.PASSWORD+"=? AND "+ Const.ID_USERS;
+        PreparedStatement PrepStat = null;
+        try {
+            PrepStat = getDBConnect().prepareStatement(select);
+            PrepStat.setString(1,name);
+            PrepStat.setString(2,password);
+            ResSet =  PrepStat.executeQuery();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return ResSet;
+    }
+    public  ResultSet getUserID(String name,String password) {
+        ResultSet ResSet = null;
         String select = "SELECT * FROM "+Const.USER_TABLE+" WHERE "+Const.USERS_NAME+"=? AND "+Const.PASSWORD+"=?";
         PreparedStatement PrepStat = null;
         try {
@@ -51,6 +68,7 @@ ResultSet ResSet = null;
         }
         return ResSet;
     }
+
     public  ResultSet getUserLogin(String name) {
         ResultSet ResSet = null;
         String select = "SELECT * FROM "+Const.USER_TABLE+" WHERE "+Const.USERS_NAME+"=?";

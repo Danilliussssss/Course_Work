@@ -1,13 +1,21 @@
 package com.example.course_work;
 
+import java.io.IOException;
 import java.net.URL;
+
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class RegisterController {
+
 
     @FXML
     private ResourceBundle resources;
@@ -25,8 +33,11 @@ public class RegisterController {
     @FXML
     private Button RegApplyButton;
     @FXML
+    private Button ExitButton;
+    @FXML
     void initialize() {
         DataBaseFunction dataBaseFunction = new DataBaseFunction();
+        Firebase firebase = new Firebase();
 
 
         RegApplyButton.setOnAction(event -> {
@@ -43,8 +54,23 @@ public class RegisterController {
                 RegError.showAndWait();
             }
             else {
-                boolean result = dataBaseFunction.WriteToDB(NameField.getText(), PasswordField.getText());
-                if (result) {
+                User user = new User(NameField.getText(),PasswordField.getText());
+                boolean res = dataBaseFunction.WriteToDB(user);
+                CompletableFuture<Boolean> exist = firebase.CheckUserName(user);
+                exist.thenAccept(result->{
+                      if(result)
+                          System.out.println("Имя занято");
+                        else {
+                            System.out.println("Имя свободно");
+                          firebase.sendUser(user);
+                        }
+                });
+
+
+
+
+
+                if (res) {
                     Alert RegComplete = new Alert(Alert.AlertType.CONFIRMATION);
                     RegComplete.setContentText("Успешная регистрация");
                     RegComplete.setTitle("Сообщение о регистрации");
@@ -59,6 +85,22 @@ public class RegisterController {
 
 
         });
+        ExitButton.setOnAction(actionEvent -> {
+            ExitButton.getScene().getWindow().hide();
+            FXMLLoader Loader = new FXMLLoader(HelloController.class.getResource("SignUp.fxml"));
+            try {
+                Scene scene = new Scene(Loader.load(),600,400);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Вход");
+                stage.show();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+
 
     }
 }

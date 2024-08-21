@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 public class HelloController {
 
 
-URL url = new URL("http://localhost:3500");
     @FXML
     private ResourceBundle resources;
 
@@ -44,6 +43,10 @@ private TextArea Message;
     private FlowPane PaneMessage;
     @FXML
     private ListView ListPanel;
+    @FXML
+    private ListView ListContact;
+    @FXML
+    private Button ExitButton;
     private boolean position = false ;
 
     public HelloController() throws MalformedURLException {
@@ -62,6 +65,7 @@ private TextArea Message;
               stage.setScene(scene);
               stage.setTitle("Добавить пользователя");
               stage.show();
+
           } catch (IOException e) {
               throw new RuntimeException(e);
           }
@@ -128,6 +132,21 @@ private TextArea Message;
               scaleTransition.Play();
           }
          
+
+      });
+      ExitButton.setOnAction(actionEvent -> {
+          ExitButton.getScene().getWindow().hide();
+          FXMLLoader Loader = new FXMLLoader(HelloController.class.getResource("SignUp.fxml"));
+          try {
+              Scene scene = new Scene(Loader.load(),600,400);
+              Stage stage = new Stage();
+              stage.setScene(scene);
+              stage.setTitle("Вход");
+              stage.show();
+
+          } catch (IOException e) {
+              throw new RuntimeException(e);
+          }
 
       });
 

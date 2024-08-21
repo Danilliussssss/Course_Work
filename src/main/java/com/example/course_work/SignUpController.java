@@ -30,13 +30,17 @@ public class SignUpController {
     private TextField PasswordField;
     @FXML
     private TextField LoginField;
+    int id;
     private int LoginUser(String UserName,String UserPassword) throws SQLException {
 DataBaseFunction DBFunction = new DataBaseFunction();
 ResultSet resultSet = DBFunction.getUserData(UserName,UserPassword);
+
 int counter = 0;
 while(resultSet.next()){
 counter++;
+id = resultSet.getInt("idUsers");
 }
+
 return counter;
     }
     @FXML
@@ -76,6 +80,7 @@ SignUpButton.setOnAction(actionEvent -> {
     else {
         int counter;
         try {
+
             counter =  LoginUser(LoginField.getText().trim(),PasswordField.getText().trim());
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,11 +1,18 @@
 package com.example.course_work;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import javafx.concurrent.Service;
+import com.google.cloud.firestore.WriteResult;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.*;
 
 
@@ -23,6 +30,7 @@ public class Server {
         connection.connect();
     }
     public void send_message(String message) throws IOException {
+
         byte[] msgbyte =  message.getBytes("UTF-8");
         OutputStream OS = connection.getOutputStream();
         OS.write(msgbyte, 0,msgbyte.length);
