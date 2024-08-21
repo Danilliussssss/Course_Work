@@ -27,7 +27,7 @@ private DatabaseReference database;
 FileInputStream PathToServiceFile;
 public Firebase()  {
     try {
-        PathToServiceFile = new FileInputStream("C:/Users/Danilka/IdeaProjects/Course_Work/src/main/resources/com/example/course_work/messengerdb-cd487-firebase-adminsdk-dsxce-418e3e1564.json");
+        PathToServiceFile = new FileInputStream("src/main/resources/com/example/course_work/messengerdb-cd487-firebase-adminsdk-dsxce-418e3e1564.json");
         try {
             FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(PathToServiceFile)).setDatabaseUrl("https://messengerdb-cd487-default-rtdb.firebaseio.com/").build();
             FirebaseApp.initializeApp(options);
