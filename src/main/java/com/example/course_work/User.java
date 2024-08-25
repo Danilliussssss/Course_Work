@@ -5,7 +5,7 @@ public class User {
     private String password;
     private String key;
     private String HashCode;
-    private static User instance = new User();
+
     public User(String name, String password) {
         this.password = password;
         this.HashCode = name+password;
@@ -14,13 +14,6 @@ public class User {
 
     }
     public User(){};
-    public User(String key){
-
-    }
-    public static User getInstance(){
-        return instance;
-    }
-
     public String getKey() {
         return key;
     }

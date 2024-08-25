@@ -41,7 +41,7 @@ public class SignUpController {
     @FXML
     void initialize() {
         Firebase firebase= new Firebase();
-        DatabaseReference database = firebase.getDatabase();
+
 RegisterButton.setOnAction(actionEvent -> {
     RegisterButton.getScene().getWindow().hide();
     FXMLLoader SignUpLoader = new FXMLLoader(SignUpController.class.getResource("Register.fxml"));
@@ -90,23 +90,23 @@ SignUpButton.setOnAction(actionEvent -> {
                     SharedData.getInstance().setData(user);
                     System.out.println(user.getKey());
 
+                    Platform.runLater(()->{SignUpButton.getScene().getWindow().hide();
+                        FXMLLoader RegisterLoader = new FXMLLoader(SignUpController.class.getResource("hello-view.fxml"));
 
-                                    SignUpButton.getScene().getWindow().hide();
-                                    FXMLLoader RegisterLoader = new FXMLLoader(SignUpController.class.getResource("hello-view.fxml"));
+                        try {
+                            //System.out.println(res);
+                            Scene scene = new Scene(RegisterLoader.load(), 501, 442);
 
-                                    try {
-                                        //System.out.println(res);
-                                        Scene scene = new Scene(RegisterLoader.load(), 501, 442);
+                            Stage Registerstage = new Stage();
+                            Registerstage.setScene(scene);
+                            Registerstage.setTitle("Мессенджер");
+                            Registerstage.show();
 
-                                        Stage Registerstage = new Stage();
-                                        Registerstage.setScene(scene);
-                                        Registerstage.setTitle("Мессенджер");
-                                        Registerstage.show();
+                        } catch (IOException e) {
 
-                                    } catch (IOException e) {
-
-                                        throw new RuntimeException(e);
-                                    }
+                            throw new RuntimeException(e);
+                        }
+                    });
 
 
                 }

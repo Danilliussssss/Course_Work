@@ -2,6 +2,8 @@ package com.example.course_work;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,6 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+
+import javax.websocket.DeploymentException;
 
 public class HelloController {
 
@@ -48,6 +52,7 @@ private TextArea Message;
     @FXML
     private Button ExitButton;
     private boolean position = false ;
+    WebClient webClient = null;
 
 
 
@@ -57,9 +62,14 @@ private TextArea Message;
     @FXML
     void initialize() {
         User UserData = SharedData.getInstance().getData();
+
         System.out.println(UserData.getName());
-        User.getInstance();
-        User outsideUser = new User("123","123");
+        try {
+            webClient = new WebClient("ws://localhost:3500");
+            webClient.loginServer(UserData.getName());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
 
 
 
@@ -82,11 +92,10 @@ private TextArea Message;
       });
       SendButton.setOnAction(actionEvent -> {
 
-          System.out.println();
+
           MessageLabel =  new Label();
-         /* Message msg = new Message();
-          User user = new User();
-          msg.sendMessage("hello",user);*/
+
+
           Label UserNameLabel = new Label("Вы");
           UserNameLabel.setWrapText(true);
           UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
@@ -94,15 +103,15 @@ private TextArea Message;
           MessageLabel.setStyle("-fx-text-fill: white;");
 
           MessageLabel.setText(Message.getText());
+
+
           try {
-
-              Server server = new Server();
-
-              server.send_message(Message.getText());
-
-          } catch (IOException e) {
+              webClient.connectBlocking();
+          } catch (InterruptedException e) {
               throw new RuntimeException(e);
           }
+          webClient.sendMessage("1","Hello","2");
+
           UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
          UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
          MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);

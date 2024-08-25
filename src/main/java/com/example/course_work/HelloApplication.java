@@ -6,14 +6,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.java_websocket.client.WebSocketClient;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class HelloApplication extends Application {
 
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, URISyntaxException, InterruptedException {
+
+
         FXMLLoader fxmlLoader  =  new FXMLLoader(HelloApplication.class.getResource("SignUp.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);

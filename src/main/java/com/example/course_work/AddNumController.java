@@ -47,7 +47,10 @@ public class AddNumController {
                                User user = snapshot.getValue(User.class);
                                 user.setKey(snapshot.getKey());
                                System.out.println(user.getKey());
-
+                               Platform.runLater(()-> {
+                               Chat chat = new Chat(user);
+                              System.out.println(user.getName());
+                               });
 
                            }
 

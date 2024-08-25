@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="java.websocket.Java.WebSocket2" type="repository">
+    <properties maven-id="org.java-websocket:Java-WebSocket:1.5.7" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/Java-WebSocket-1.5.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-2.0.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/Java-WebSocket-1.5.7-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-2.0.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/Java-WebSocket-1.5.7-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-2.0.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -9,15 +9,17 @@ private String ChatID;
 private Firebase database;
 
 public Chat(User anotherUser){
-    user = User.getInstance();
+
+    user = SharedData.getInstance().getData();
     AnotherUser = anotherUser;
+    System.out.println(user.getName());
     DatabaseReference MessageRef = Firebase.getInstance().getDatabase().child("/0").child("Chats").push();
     MessageRef.setValueAsync(this);
 
 
 }
 public void SendMessage(String text){
-
+     
 }
 
     public User getAnotherUser() {

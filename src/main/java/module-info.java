@@ -13,6 +13,11 @@ module com.example.course_work {
     requires proto.google.cloud.firestore.v1;
     requires google.cloud.core;
     requires opencensus.api;
+    requires javax.websocket.api;
+    requires java.net.http;
+
+    requires org.java_websocket;
+
 
 
     opens com.example.course_work to javafx.fxml, firebase.admin;
