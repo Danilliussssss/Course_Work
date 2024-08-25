@@ -6,6 +6,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,8 +40,9 @@ public class RegisterController {
     private Button ExitButton;
     @FXML
     void initialize() {
-        DataBaseFunction dataBaseFunction = new DataBaseFunction();
-        Firebase firebase = new Firebase();
+
+       Firebase firebase = Firebase.getInstance();
+        DatabaseReference database = firebase.getDatabase();
 
 
         RegApplyButton.setOnAction(event -> {
@@ -54,15 +59,33 @@ public class RegisterController {
                 RegError.showAndWait();
             }
             else {
-                User user = new User(NameField.getText(),PasswordField.getText());
-                boolean res = dataBaseFunction.WriteToDB(user);
-                CompletableFuture<Boolean> exist = firebase.CheckUserName(user);
+
+
+                CompletableFuture<DataSnapshot> exist = firebase.CheckUserData(NameField.getText().trim(),"0/Users/","name");
                 exist.thenAccept(result->{
-                      if(result)
+                      if(result!=null) {
                           System.out.println("Имя занято");
-                        else {
+                          Platform.runLater(()->{Alert RegError = new Alert(Alert.AlertType.ERROR);
+                          RegError.setContentText("Имя занято");
+                          RegError.setTitle("Сообщение о регистрации");
+                          RegError.showAndWait();
+
+
+                      });
+                      }
+                      else {
+
                             System.out.println("Имя свободно");
+                          Platform.runLater(()->{Alert RegComplete = new Alert(Alert.AlertType.CONFIRMATION);
+                          RegComplete.setContentText("Успешная регистрация");
+                          RegComplete.setTitle("Сообщение о регистрации");
+                          RegComplete.showAndWait();
+                          });
+                          User user = new User(NameField.getText(),PasswordField.getText());
                           firebase.sendUser(user);
+                          System.out.println(user.getKey());
+
+
                         }
                 });
 
@@ -70,17 +93,7 @@ public class RegisterController {
 
 
 
-                if (res) {
-                    Alert RegComplete = new Alert(Alert.AlertType.CONFIRMATION);
-                    RegComplete.setContentText("Успешная регистрация");
-                    RegComplete.setTitle("Сообщение о регистрации");
-                    RegComplete.showAndWait();
-                } else {
-                    Alert RegError = new Alert(Alert.AlertType.ERROR);
-                    RegError.setContentText("Имя занято");
-                    RegError.setTitle("Сообщение о регистрации");
-                    RegError.showAndWait();
-                }
+
             }
 
 

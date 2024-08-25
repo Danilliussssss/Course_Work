@@ -12,6 +12,7 @@ module com.example.course_work {
     requires com.google.auth;
     requires proto.google.cloud.firestore.v1;
     requires google.cloud.core;
+    requires opencensus.api;
 
 
     opens com.example.course_work to javafx.fxml, firebase.admin;

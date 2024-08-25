@@ -3,12 +3,30 @@ package com.example.course_work;
 public class User {
     private String name;
     private String password;
-    private int id;
-
+    private String key;
+    private String HashCode;
+    private static User instance = new User();
     public User(String name, String password) {
-        this.name = name;
         this.password = password;
+        this.HashCode = name+password;
+        this.name = name;
 
+
+    }
+    public User(){};
+    public User(String key){
+
+    }
+    public static User getInstance(){
+        return instance;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getName() {
@@ -27,11 +45,11 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getHashCode() {
+        return HashCode;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setHashCode(String hashCode) {
+        HashCode = hashCode;
     }
 }

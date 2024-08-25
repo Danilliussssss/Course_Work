@@ -49,11 +49,19 @@ private TextArea Message;
     private Button ExitButton;
     private boolean position = false ;
 
-    public HelloController() throws MalformedURLException {
-    }
+
+
+
+
 
     @FXML
     void initialize() {
+        User UserData = SharedData.getInstance().getData();
+        System.out.println(UserData.getName());
+        User.getInstance();
+        User outsideUser = new User("123","123");
+
+
 
       AddNum.setOnAction(actionEvent -> {
         AddNum.getScene().getWindow().hide();
@@ -66,6 +74,7 @@ private TextArea Message;
               stage.setTitle("Добавить пользователя");
               stage.show();
 
+
           } catch (IOException e) {
               throw new RuntimeException(e);
           }
@@ -73,8 +82,11 @@ private TextArea Message;
       });
       SendButton.setOnAction(actionEvent -> {
 
-
+          System.out.println();
           MessageLabel =  new Label();
+         /* Message msg = new Message();
+          User user = new User();
+          msg.sendMessage("hello",user);*/
           Label UserNameLabel = new Label("Вы");
           UserNameLabel.setWrapText(true);
           UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
@@ -83,6 +95,7 @@ private TextArea Message;
 
           MessageLabel.setText(Message.getText());
           try {
+
               Server server = new Server();
 
               server.send_message(Message.getText());
@@ -108,6 +121,7 @@ private TextArea Message;
 
          MessageLabel.setVisible(true);
           UserNameLabel.setVisible(true);
+
 
 
       });

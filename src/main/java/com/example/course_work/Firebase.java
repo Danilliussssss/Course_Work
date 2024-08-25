@@ -14,6 +14,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.FirebaseDatabase;
+import io.opencensus.metrics.export.Summary;
+import javafx.application.Platform;
 
 
 import java.io.FileInputStream;
@@ -24,13 +26,16 @@ import java.util.concurrent.CompletableFuture;
 
 public class Firebase {
 private DatabaseReference database;
+private static Firebase instance;
 FileInputStream PathToServiceFile;
 public Firebase()  {
     try {
         PathToServiceFile = new FileInputStream("src/main/resources/com/example/course_work/messengerdb-cd487-firebase-adminsdk-dsxce-418e3e1564.json");
         try {
-            FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(PathToServiceFile)).setDatabaseUrl("https://messengerdb-cd487-default-rtdb.firebaseio.com/").build();
-            FirebaseApp.initializeApp(options);
+            if(FirebaseApp.getApps().isEmpty()) {
+                FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(PathToServiceFile)).setDatabaseUrl("https://messengerdb-cd487-default-rtdb.firebaseio.com/").build();
+                FirebaseApp.initializeApp(options);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -40,18 +45,19 @@ public Firebase()  {
     database = FirebaseDatabase.getInstance().getReference();
 }
 
-public CompletableFuture<Boolean> CheckUserName(User user) {
-   CompletableFuture<Boolean> result = new CompletableFuture<>();
-database.child("0").orderByChild("name").equalTo(user.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
+public CompletableFuture<DataSnapshot> CheckUserData(String param, String path, String key) {
+   CompletableFuture<DataSnapshot> result = new CompletableFuture<>();
+database.child(path).orderByChild(key).equalTo(param).addListenerForSingleValueEvent(new ValueEventListener() {
 
     @Override
     public void onDataChange(DataSnapshot snapshot) {
 
         if(snapshot.exists()) {
-           result.complete(true);
+
+           result.complete(snapshot);
         }
         else {
-            result.complete(false);
+            result.complete(null);
         }
     }
 
@@ -62,9 +68,30 @@ result.completeExceptionally(error.toException());
 });
     return result;
 }
+public static synchronized Firebase getInstance(){
+    if(instance==null)
+        instance = new Firebase();
+    return instance;
+}
+
+    public DatabaseReference getDatabase() {
+        return database;
+    }
+
+
+
+
+
 public void sendUser(User user) {
-DatabaseReference MessageRef = database.child("/0").push();
+DatabaseReference MessageRef = database.child("/0").child("Users").push();
 MessageRef.setValueAsync(user);
+user.setKey(MessageRef.getKey());
 System.out.println("Succesfully");
+}
+public void sendChat(Chat chat){
+    DatabaseReference MessageRef = database.child("/0").child("Users").push();
+    MessageRef.setValueAsync(chat);
+
+    System.out.println("Succesfully");
 }
 }

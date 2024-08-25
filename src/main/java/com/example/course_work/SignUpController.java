@@ -4,9 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 
 import Animation.Shake;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,21 +36,12 @@ public class SignUpController {
     @FXML
     private TextField LoginField;
     int id;
-    private int LoginUser(String UserName,String UserPassword) throws SQLException {
-DataBaseFunction DBFunction = new DataBaseFunction();
-ResultSet resultSet = DBFunction.getUserData(UserName,UserPassword);
 
-int counter = 0;
-while(resultSet.next()){
-counter++;
-id = resultSet.getInt("idUsers");
-}
 
-return counter;
-    }
     @FXML
     void initialize() {
-
+        Firebase firebase= new Firebase();
+        DatabaseReference database = firebase.getDatabase();
 RegisterButton.setOnAction(actionEvent -> {
     RegisterButton.getScene().getWindow().hide();
     FXMLLoader SignUpLoader = new FXMLLoader(SignUpController.class.getResource("Register.fxml"));
@@ -61,50 +57,61 @@ RegisterButton.setOnAction(actionEvent -> {
 });
 SignUpButton.setOnAction(actionEvent -> {
     if (LoginField.getText().trim().isEmpty()) {
-
         Alert RegError = new Alert(Alert.AlertType.ERROR);
         RegError.setContentText("Введите логин для входа");
         RegError.setTitle("Сообщение о регистрации");
         RegError.showAndWait();
     }
     else if(PasswordField.getText().trim().isEmpty()) {
-
         Alert RegError = new Alert(Alert.AlertType.ERROR);
-
         RegError.setContentText("Введите пароль для входа");
         RegError.setTitle("Сообщение о регистрации");
         RegError.showAndWait();
-
     }
-
     else {
-        int counter;
-        try {
+            CompletableFuture<DataSnapshot> existLogin = firebase.CheckUserData(LoginField.getText()+PasswordField.getText(),"0/Users","hashCode");
+            existLogin.thenAccept(result->{
+                if(result==null){
+                    Platform.runLater(()->{
+                    Alert RegError = new Alert(Alert.AlertType.ERROR);
+                RegError.setContentText("Неверный логин и/или пароль");
+                RegError.setTitle("Сообщение о регистрации");
+                RegError.showAndWait();
+                    System.out.println("Логин и/или пароль неверны");
+                    });
+                }
+                else{
 
-            counter =  LoginUser(LoginField.getText().trim(),PasswordField.getText().trim());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        if(counter>=1) {
-            SignUpButton.getScene().getWindow().hide();
-            FXMLLoader RegisterLoader = new FXMLLoader(SignUpController.class.getResource("hello-view.fxml"));
-            try {
-                Scene scene = new Scene(RegisterLoader.load(), 501, 442);
-                Stage Registerstage = new Stage();
-                Registerstage.setScene(scene);
-                Registerstage.setTitle("Мессенджер");
-                Registerstage.show();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else{
-            Alert RegError = new Alert(Alert.AlertType.ERROR);
-            RegError.setContentText("Неверный логин и/или пароль");
-            RegError.setTitle("Сообщение о регистрации");
-            RegError.showAndWait();
+                    User user = new User(LoginField.getText(),PasswordField.getText());
 
-        }
+                    for(DataSnapshot snapshot: result.getChildren()) {
+                        user.setKey(snapshot.getKey());
+                    }
+                    SharedData.getInstance().setData(user);
+                    System.out.println(user.getKey());
+
+
+                                    SignUpButton.getScene().getWindow().hide();
+                                    FXMLLoader RegisterLoader = new FXMLLoader(SignUpController.class.getResource("hello-view.fxml"));
+
+                                    try {
+                                        //System.out.println(res);
+                                        Scene scene = new Scene(RegisterLoader.load(), 501, 442);
+
+                                        Stage Registerstage = new Stage();
+                                        Registerstage.setScene(scene);
+                                        Registerstage.setTitle("Мессенджер");
+                                        Registerstage.show();
+
+                                    } catch (IOException e) {
+
+                                        throw new RuntimeException(e);
+                                    }
+
+
+                }
+            });
+
     }
 });
     }

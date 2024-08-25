@@ -4,9 +4,15 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,29 +30,38 @@ public class AddNumController {
     private TextField Add_UserName;
     @FXML
     private Button ApplyUser;
-    private int SearchUserLoginInDB(String UserName)throws SQLException {
-        DataBaseFunction DBFunction = new DataBaseFunction();
-        ResultSet resultSet = DBFunction.getUserLogin(UserName);
-        int counter = 0;
-        while (resultSet.next()) {
-            counter++;
-        }
-        return counter;
-    }
+    Firebase firebase = Firebase.getInstance();
+    DatabaseReference database = firebase.getDatabase();
+
 
     @FXML
     void initialize() {
        ApplyUser.setOnAction(actionEvent ->{
            String Name = Add_UserName.getText().trim();
-           int counter;
-           try {
-               counter =  SearchUserLoginInDB(Add_UserName.getText().trim());
 
-           } catch (SQLException e) {
-               throw new RuntimeException(e);
-           }
-           if(counter>=1)
-           System.out.println(Name);
+           CompletableFuture<DataSnapshot> exist = firebase.CheckUserData(Name,"0/Users/","name");
+           exist.thenAccept(result-> {
+                       if (result!=null)
+                       {
+                           for(DataSnapshot snapshot: result.getChildren()) {
+                               User user = snapshot.getValue(User.class);
+                                user.setKey(snapshot.getKey());
+                               System.out.println(user.getKey());
+
+
+                           }
+
+                       }
+                       else{
+                           Platform.runLater(()-> {
+                               Alert RegError = new Alert(Alert.AlertType.ERROR);
+                               RegError.setContentText("Пользователь не найден");
+                               RegError.setTitle("Сообщение о поиске пользователя");
+                               RegError.showAndWait();
+                           });
+                       }
+                      // Chat chat = new Chat();
+                   });
        });
         ExitButton.setOnAction(actionEvent -> {
             ExitButton.getScene().getWindow().hide();
