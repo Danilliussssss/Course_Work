@@ -4,51 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added new database methods for search data">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/backport_util_concurrent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/codehaus_jackson_core_asl.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml_jackson_dataformat_csv.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml_jackson_datatype_guava.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/backport-util-concurrent-3.1-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/backport-util-concurrent-3.1-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/backport-util-concurrent-3.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/guava-11.0.2-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/guava-11.0.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/guava-11.0.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.4-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-dataformat-csv-0.5.0-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-dataformat-csv-0.5.0-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-dataformat-csv-0.5.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-datatype-guava-1.9.2-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-datatype-guava-1.9.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-datatype-guava-1.9.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.4-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jsr305-1.3.9.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/junit-4.8.2-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/junit-4.8.2-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/junit-4.8.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/Firebase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/Firebase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/SharedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/SharedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/WebClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/WebClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/Firebase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/Firebase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/SharedData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/SharedData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/WebClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/WebClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
-    </list>
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added send message between 2 users" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -403,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724675695541</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added send message between 2 users">
+      <option name="closed" value="true" />
+      <created>1724860311623</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1724860311623</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,6 +439,7 @@
     <MESSAGE value="Added new database FireBase" />
     <MESSAGE value="Added send messages" />
     <MESSAGE value="Added new database methods for search data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new database methods for search data" />
+    <MESSAGE value="Added send message between 2 users" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added send message between 2 users" />
   </component>
 </project>
