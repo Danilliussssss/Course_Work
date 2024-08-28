@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added send message between 2 users" />
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added send message between 2 users">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_websocket_api3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_websocket_client_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.12-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.12-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-core-asl-1.9.12.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.12-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.12-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jackson-mapper-asl-1.9.12.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.websocket-client-api-1.1-javadoc.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.websocket-client-api-1.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.websocket-client-api-1.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +66,7 @@
     "Application.HelloApplication.executor": "Run",
     "Application.Unnamed.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.Annotations": "true",
     "Repository.Attach.JavaDocs": "true",
     "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -367,7 +382,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724860311623</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Added send message between 2 users">
+      <option name="closed" value="true" />
+      <created>1724871263094</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1724871263094</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

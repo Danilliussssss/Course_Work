@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Course_Work" options="--add-exports com.fasterxml.jackson.core/com.fasterxml.jackson=com.example.course_work" />
+      <module name="Course_Work" options="" />
     </option>
   </component>
 </project>
