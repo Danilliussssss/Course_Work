@@ -11,12 +11,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CompletableFuture;
 
 import Animation.Fade;
 import Animation.ScaleTransition;
 import Animation.Shake;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -51,8 +56,8 @@ private TextArea Message;
     private FlowPane PaneMessage;
     @FXML
     private ListView ListPanel;
-    @FXML
-    private ListView ListContact;
+@FXML
+    private ListView<String> ListContact = new ListView<>();
     @FXML
     private Button ExitButton;
     private boolean position = false ;
@@ -60,7 +65,7 @@ private TextArea Message;
     MessageService messageService = new MessageService();
     String msg;
     ObjectMapper objectMapper = new ObjectMapper();
-
+    String AccepterName;
 
 
 
@@ -68,6 +73,7 @@ private TextArea Message;
     void initialize() {
 
         User UserData = SharedData.getInstance().getData();
+        ListContact.setItems(SharedData.getInstance().getContacts());
 
         System.out.println(UserData.getName());
         try {
@@ -103,39 +109,48 @@ private TextArea Message;
 
       });
       SendButton.setOnAction(actionEvent -> {
+          if(AccepterName!=null) {
 
 
-          MessageLabel =  new Label();
+              MessageLabel = new Label();
 
 
-          Label UserNameLabel = new Label("Вы");
-          UserNameLabel.setWrapText(true);
-          UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
-          MessageLabel.setWrapText(true);
-          MessageLabel.setStyle("-fx-text-fill: white;");
-          MessageLabel.setText(Message.getText());
-          webClient.sendMessage(UserData.getName(),Message.getText(),"2");
-          UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
-         UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
-         MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
-         MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
-         ScaleTransition scaleTransition = new ScaleTransition(MessageLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
-          scaleTransition.Play();
-          ScaleTransition scaleTransitionUserName = new ScaleTransition(UserNameLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
-          scaleTransition.Play();
-          scaleTransitionUserName.Play();
-         FlowPane.setMargin(MessageLabel,new Insets(-10,0,0,25) );
-          FlowPane.setMargin(UserNameLabel,new Insets(0,0,0,25) );
-         PaneMessage.setVgap(10);
-        PaneMessage.getChildren().addAll(UserNameLabel,MessageLabel);
-         MessageLabel.setManaged(true);
-         UserNameLabel.setManaged(true);
+              Label UserNameLabel = new Label("Вы");
+              UserNameLabel.setWrapText(true);
+              UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
+              MessageLabel.setWrapText(true);
+              MessageLabel.setStyle("-fx-text-fill: white;");
+              MessageLabel.setText(Message.getText());
+              webClient.sendMessage(UserData.getName(), Message.getText(), AccepterName);
+              DatabaseReference MessageRef = Firebase.getInstance().getDatabase().child("/0").child("Chats").child(UserData.getName()).push();
+              MessageRef.setValueAsync(Message.getText());
+              UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
+              UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+              MessageLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+              MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
+              ScaleTransition scaleTransition = new ScaleTransition(MessageLabel, 0, -1, PaneMessage.getPrefHeight(), -PaneMessage.getMaxHeight());
+              scaleTransition.Play();
+              ScaleTransition scaleTransitionUserName = new ScaleTransition(UserNameLabel, 0, -1, PaneMessage.getPrefHeight(), -PaneMessage.getMaxHeight());
+              scaleTransition.Play();
+              scaleTransitionUserName.Play();
+              FlowPane.setMargin(MessageLabel, new Insets(-10, 0, 0, 25));
+              FlowPane.setMargin(UserNameLabel, new Insets(0, 0, 0, 25));
+              PaneMessage.setVgap(10);
+              PaneMessage.getChildren().addAll(UserNameLabel, MessageLabel);
+              MessageLabel.setManaged(true);
+              UserNameLabel.setManaged(true);
 
-         MessageLabel.setVisible(true);
-          UserNameLabel.setVisible(true);
+              MessageLabel.setVisible(true);
+              UserNameLabel.setVisible(true);
 
 
-
+          }
+          else {
+              Alert RegError = new Alert(Alert.AlertType.ERROR);
+              RegError.setContentText("Выберите отправителя");
+              RegError.setTitle("Ошибка");
+              RegError.showAndWait();
+          }
       });
       MenuButton.setOnAction(actionEvent -> {
           double Trans;
@@ -175,7 +190,16 @@ private TextArea Message;
           }
 
       });
+  ListContact.getSelectionModel().selectedItemProperty().addListener(((observableValue, OldValue, NewValue) ->{
+      if(NewValue!=null) {
 
+          System.out.println("Вы выбрали " + NewValue);
+          AccepterName = NewValue;
+
+
+
+            }
+  } ));
     }
     void handle() {
         while (true) {
@@ -186,38 +210,52 @@ private TextArea Message;
                     Label  MessageLabel =  new Label();
 
 
-                    Label UserNameLabel = new Label("2");
-                    UserNameLabel.setWrapText(true);
-                    UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
-                    MessageLabel.setWrapText(true);
-                    MessageLabel.setStyle("-fx-text-fill: white;");
+
 
                     try {
                         JsonNode jsonNode = objectMapper.readTree(msg);
-                        String sender = jsonNode.get("sender").asText();
-                        String message = jsonNode.get("message").asText();
-                        MessageLabel.setText(message);
+                        String type;
+                            if(jsonNode.get("type").asText()=="message") {
+
+                                String sender = jsonNode.get("sender").asText();
+                                String message = jsonNode.get("message").asText();
+                                Label UserNameLabel = new Label(sender);
+                                UserNameLabel.setWrapText(true);
+                                UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
+                                MessageLabel.setWrapText(true);
+                                MessageLabel.setStyle("-fx-text-fill: white;");
+                                ;
+                                MessageLabel.setText(message);
+                                UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                                UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+                                MessageLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+                                MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                                ScaleTransition scaleTransition = new ScaleTransition(MessageLabel, 0, -1, PaneMessage.getPrefHeight(), -PaneMessage.getMaxHeight());
+                                scaleTransition.Play();
+                                ScaleTransition scaleTransitionUserName = new ScaleTransition(UserNameLabel, 0, -1, PaneMessage.getPrefHeight(), -PaneMessage.getMaxHeight());
+                                scaleTransition.Play();
+                                scaleTransitionUserName.Play();
+                                FlowPane.setMargin(MessageLabel, new Insets(-10, 0, 0, 250));
+                                FlowPane.setMargin(UserNameLabel, new Insets(0, 0, 0, 275));
+                                PaneMessage.setVgap(10);
+                                PaneMessage.getChildren().addAll(UserNameLabel, MessageLabel);
+                                MessageLabel.setManaged(true);
+                                UserNameLabel.setManaged(true);
+                                MessageLabel.setVisible(true);
+                                UserNameLabel.setVisible(true);
+                            }
+                            else if(jsonNode.get("type").asText()=="chat"){
+                                String sender = jsonNode.get("first").asText();
+                                SharedData.getInstance().getContacts().add(sender);
+                                ListContact.setItems(SharedData.getInstance().getContacts());
+                            }
+
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
 
-                    UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
-                    UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
-                    MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
-                    MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
-                    ScaleTransition scaleTransition = new ScaleTransition(MessageLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
-                    scaleTransition.Play();
-                    ScaleTransition scaleTransitionUserName = new ScaleTransition(UserNameLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
-                    scaleTransition.Play();
-                    scaleTransitionUserName.Play();
-                    FlowPane.setMargin(MessageLabel,new Insets(-10,0,0,250) );
-                    FlowPane.setMargin(UserNameLabel,new Insets(0,0,0,275) );
-                    PaneMessage.setVgap(10);
-                    PaneMessage.getChildren().addAll(UserNameLabel,MessageLabel);
-                    MessageLabel.setManaged(true);
-                    UserNameLabel.setManaged(true);
-                    MessageLabel.setVisible(true);
-                    UserNameLabel.setVisible(true);
+
+
                 });
 
 
@@ -227,5 +265,6 @@ private TextArea Message;
             System.out.println(msg);
         }
     }
+
 
 }

@@ -81,6 +81,7 @@ public class RegisterController {
                           RegComplete.setTitle("Сообщение о регистрации");
                           RegComplete.showAndWait();
                           });
+
                           User user = new User(NameField.getText(),PasswordField.getText());
                           firebase.sendUser(user);
                           System.out.println(user.getKey());

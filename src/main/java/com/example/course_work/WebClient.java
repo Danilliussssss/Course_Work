@@ -45,6 +45,13 @@ System.out.println("Отключено от сервера");
         send(JsonMsg);
         System.out.println("Сообщение отправлено!");
     }
+    public void sendChat(String first,String second){
+        String JsonChat = String.format("{\"type\":\"chat\",\"first\":\"%s\",\"second\":\"%s\"}",
+                first,second);
+        send(JsonChat);
+        System.out.println("Сообщение отправлено!");
+
+    }
     public void loginServer(String name){
         String JsonLgn  = String.format("{\"type\":\"login\",\"name\":\"%s\"}",
                 name);

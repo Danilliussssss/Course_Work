@@ -9,6 +9,8 @@ import java.util.concurrent.CompletableFuture;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -46,10 +48,13 @@ public class AddNumController {
                            for(DataSnapshot snapshot: result.getChildren()) {
                                User user = snapshot.getValue(User.class);
                                 user.setKey(snapshot.getKey());
-                               System.out.println(user.getKey());
+                               System.out.println(user.getPassword());
+                               SharedData.getInstance().setGuestUser(user);
                                Platform.runLater(()-> {
                                Chat chat = new Chat(user);
                               System.out.println(user.getName());
+
+                              SharedData.getInstance().getContacts().add(user.getName());
                                });
 
                            }
@@ -84,5 +89,6 @@ public class AddNumController {
 
 
     }
+
 
 }
