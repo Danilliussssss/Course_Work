@@ -10,11 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.concurrent.BlockingQueue;
 
 import Animation.Fade;
 import Animation.ScaleTransition;
 import Animation.Shake;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -22,6 +24,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.websocket.DeploymentException;
 
@@ -52,24 +56,32 @@ private TextArea Message;
     @FXML
     private Button ExitButton;
     private boolean position = false ;
-    WebClient webClient = null;
-
-
+    WebClient webClient  = null;
+    MessageService messageService = new MessageService();
+    String msg;
+    ObjectMapper objectMapper = new ObjectMapper();
 
 
 
 
     @FXML
     void initialize() {
+
         User UserData = SharedData.getInstance().getData();
 
         System.out.println(UserData.getName());
         try {
-            webClient = new WebClient("ws://localhost:3500");
+
+            webClient = new WebClient("ws://192.168.0.102:3500",messageService);
+            webClient.connectBlocking();
             webClient.loginServer(UserData.getName());
-        } catch (URISyntaxException e) {
+           new Thread(this::handle).start();
+
+
+        } catch (URISyntaxException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+
 
 
 
@@ -101,17 +113,8 @@ private TextArea Message;
           UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
           MessageLabel.setWrapText(true);
           MessageLabel.setStyle("-fx-text-fill: white;");
-
           MessageLabel.setText(Message.getText());
-
-
-          try {
-              webClient.connectBlocking();
-          } catch (InterruptedException e) {
-              throw new RuntimeException(e);
-          }
-          webClient.sendMessage("1","Hello","2");
-
+          webClient.sendMessage(UserData.getName(),Message.getText(),"2");
           UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
          UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
          MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
@@ -173,6 +176,56 @@ private TextArea Message;
 
       });
 
+    }
+    void handle() {
+        while (true) {
+            try {
+                msg = messageService.getMessage();
+                System.out.println(msg);
+                Platform.runLater(()->{
+                    Label  MessageLabel =  new Label();
+
+
+                    Label UserNameLabel = new Label("2");
+                    UserNameLabel.setWrapText(true);
+                    UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
+                    MessageLabel.setWrapText(true);
+                    MessageLabel.setStyle("-fx-text-fill: white;");
+
+                    try {
+                        JsonNode jsonNode = objectMapper.readTree(msg);
+                        String sender = jsonNode.get("sender").asText();
+                        String message = jsonNode.get("message").asText();
+                        MessageLabel.setText(message);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                    UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
+                    MessageLabel.setPrefWidth(PaneMessage.getPrefWidth()-100);
+                    MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                    ScaleTransition scaleTransition = new ScaleTransition(MessageLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
+                    scaleTransition.Play();
+                    ScaleTransition scaleTransitionUserName = new ScaleTransition(UserNameLabel,0,-1,PaneMessage.getPrefHeight(),-PaneMessage.getMaxHeight());
+                    scaleTransition.Play();
+                    scaleTransitionUserName.Play();
+                    FlowPane.setMargin(MessageLabel,new Insets(-10,0,0,250) );
+                    FlowPane.setMargin(UserNameLabel,new Insets(0,0,0,275) );
+                    PaneMessage.setVgap(10);
+                    PaneMessage.getChildren().addAll(UserNameLabel,MessageLabel);
+                    MessageLabel.setManaged(true);
+                    UserNameLabel.setManaged(true);
+                    MessageLabel.setVisible(true);
+                    UserNameLabel.setVisible(true);
+                });
+
+
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(msg);
+        }
     }
 
 }

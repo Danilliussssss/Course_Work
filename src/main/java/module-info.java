@@ -17,7 +17,9 @@ module com.example.course_work {
     requires java.net.http;
 
     requires org.java_websocket;
-
+    requires com.fasterxml.jackson.core;
+    requires jackson.mapper.asl;
+    requires jackson.core.asl;
 
 
     opens com.example.course_work to javafx.fxml, firebase.admin;

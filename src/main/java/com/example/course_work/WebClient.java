@@ -5,9 +5,17 @@ import java.net.URI;
 import java.net.URISyntaxException;
 public class WebClient extends WebSocketClient{
 
+Firebase firebase;
+MessageService messageService;
+    public WebClient(String serverUri,MessageService param) throws URISyntaxException {
 
-    public WebClient(String serverUri) throws URISyntaxException {
         super(new URI(serverUri));
+        firebase = Firebase.getInstance();
+        this.messageService = param;
+
+
+
+
     }
 
     @Override
@@ -18,6 +26,8 @@ public class WebClient extends WebSocketClient{
     @Override
     public void onMessage(String message) {
       System.out.println("Получено: "+message);
+      messageService.setMessage(message);
+
     }
 
     @Override
@@ -40,5 +50,8 @@ System.out.println("Отключено от сервера");
                 name);
         send(JsonLgn);
         System.out.println("Вход выполнен");
+    }
+    public String getMessage(String message){
+        return message;
     }
 }

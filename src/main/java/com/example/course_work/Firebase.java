@@ -89,7 +89,7 @@ user.setKey(MessageRef.getKey());
 System.out.println("Succesfully");
 }
 public void sendChat(Chat chat){
-    DatabaseReference MessageRef = database.child("/0").child("Users").push();
+    DatabaseReference MessageRef = database.child("/0").child("Chats").push();
     MessageRef.setValueAsync(chat);
 
     System.out.println("Succesfully");
