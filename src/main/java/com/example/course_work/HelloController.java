@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
@@ -215,8 +216,9 @@ private TextArea Message;
                     try {
                         JsonNode jsonNode = objectMapper.readTree(msg);
                         String type;
-                            if(jsonNode.get("type").asText()=="message") {
-
+                        System.out.println(jsonNode.get("type").asText());
+                            if(Objects.equals(jsonNode.get("type").asText(), "message")) {
+                                System.out.println("123");
                                 String sender = jsonNode.get("sender").asText();
                                 String message = jsonNode.get("message").asText();
                                 Label UserNameLabel = new Label(sender);
@@ -244,7 +246,8 @@ private TextArea Message;
                                 MessageLabel.setVisible(true);
                                 UserNameLabel.setVisible(true);
                             }
-                            else if(jsonNode.get("type").asText()=="chat"){
+                            else if(Objects.equals(jsonNode.get("type").asText(), "chat")){
+                                System.out.println("456");
                                 String sender = jsonNode.get("first").asText();
                                 SharedData.getInstance().getContacts().add(sender);
                                 ListContact.setItems(SharedData.getInstance().getContacts());

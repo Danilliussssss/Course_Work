@@ -1,5 +1,6 @@
 package com.example.course_work;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,11 +35,23 @@ public class AddNumController {
     private Button ApplyUser;
     Firebase firebase = Firebase.getInstance();
     DatabaseReference database = firebase.getDatabase();
+WebClient webClient = null;
+    MessageService messageService = new MessageService();
 
 
     @FXML
     void initialize() {
-       ApplyUser.setOnAction(actionEvent ->{
+
+
+        try {
+            webClient = new WebClient("ws://192.168.0.102:3500",messageService);
+            webClient.connectBlocking();
+        } catch (URISyntaxException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        ApplyUser.setOnAction(actionEvent ->{
            String Name = Add_UserName.getText().trim();
 
            CompletableFuture<DataSnapshot> exist = firebase.CheckUserData(Name,"0/Users/","name");
@@ -55,6 +68,8 @@ public class AddNumController {
                               System.out.println(user.getName());
 
                               SharedData.getInstance().getContacts().add(user.getName());
+                              webClient.sendChat(SharedData.getInstance().getData().getName(),user.getName());
+                              webClient.close();
                                });
 
                            }
