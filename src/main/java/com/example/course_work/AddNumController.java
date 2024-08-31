@@ -69,7 +69,7 @@ WebClient webClient = null;
 
                               SharedData.getInstance().getContacts().add(user.getName());
                               webClient.sendChat(SharedData.getInstance().getData().getName(),user.getName());
-                              webClient.close();
+
                                });
 
                            }

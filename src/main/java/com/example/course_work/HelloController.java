@@ -161,8 +161,12 @@ private TextArea Message;
 
           ScaleTransition scaleTransitionPanel = new ScaleTransition(ListPanel,Trans,0,0,0);
           ScaleTransition scaleTransitionButton = new ScaleTransition(MenuButton,Trans,0,0,0);
+          ScaleTransition scaleTransitionListContact = new ScaleTransition(ListContact,Trans,0,0,0);
+          ScaleTransition scaleTransitionExit = new ScaleTransition(ExitButton,Trans,0,0,0);
           scaleTransitionPanel.Play();
           scaleTransitionButton.Play();
+          scaleTransitionListContact.Play();
+          scaleTransitionExit.Play();
           position = !position;
           if(position) {
 
