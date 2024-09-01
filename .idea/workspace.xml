@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Add more detail field in class 'Chat'">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/HelloApplication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/HelloApplication.xml" afterDir="false" />
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Add contact list in database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -471,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725164605895</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Add contact list in database">
+      <option name="closed" value="true" />
+      <created>1725175984521</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1725175984521</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -547,6 +555,7 @@
     <MESSAGE value="Added send message between 2 users" />
     <MESSAGE value="Added animation on menu button" />
     <MESSAGE value="Add more detail field in class 'Chat'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add more detail field in class 'Chat'" />
+    <MESSAGE value="Add contact list in database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add contact list in database" />
   </component>
 </project>

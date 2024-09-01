@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 
@@ -64,11 +65,15 @@ WebClient webClient = null;
                              if(SharedData.getInstance().getContacts().indexOf(user.getName())==-1) {
                                  SharedData.getInstance().setGuestUser(user);
                                  Platform.runLater(() -> {
-                                     Chat chat = new Chat(user);
-                                     System.out.println(user.getName());
+                                    System.out.println(user.getName());
+                                    System.out.println(SharedData.getInstance().getData().getName());
 
-                                     SharedData.getInstance().getContacts().add(user.getName());
-                                     webClient.sendChat(SharedData.getInstance().getData().getName(), user.getName());
+                                         Chat chat = new Chat(user);
+                                         System.out.println(user.getName());
+
+
+                                         webClient.sendChat(SharedData.getInstance().getData().getName(), user.getName());
+
 
                                  });
                              }

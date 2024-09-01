@@ -73,7 +73,7 @@ private TextArea Message;
 
     @FXML
     void initialize() {
-
+       SharedData.getInstance().getContacts().clear();
         User UserData = SharedData.getInstance().getData();
         CompletableFuture<DataSnapshot> contacts = database.CheckUserData(UserData.getName(),"0/Chats/","yourName");
         contacts.thenAccept(result->{
@@ -81,9 +81,8 @@ private TextArea Message;
                System.out.println(snapshot.child("yourName").getValue());
                System.out.println(UserData.getName());
                if(Objects.equals(snapshot.child("yourName").getValue(),UserData.getName())){
-
                    SharedData.getInstance().getContacts().add(snapshot.child("anotherUserName").getValue().toString());
-               System.out.println("76543");
+               System.out.println("12345");
                }
            }
         });
@@ -92,7 +91,7 @@ private TextArea Message;
             for(DataSnapshot snapshot: result.getChildren()){
                 System.out.println(snapshot.child("anotherUserName").getValue());
                 System.out.println(UserData.getName());
-                if(Objects.equals(snapshot.child("anotherUserName").getValue(),UserData.getName())){
+                if(Objects.equals(snapshot.child("anotherUserName").getValue(),UserData.getName())&&!Objects.equals(snapshot.child("yourName").getValue(),snapshot.child("anotherUserName").getValue())){
 
                     SharedData.getInstance().getContacts().add(snapshot.child("yourName").getValue().toString());
                     System.out.println("76543");
@@ -284,10 +283,14 @@ private TextArea Message;
                                 }
                             }
                             else if(Objects.equals(jsonNode.get("type").asText(), "chat")){
-                                System.out.println("456");
+
+
                                 String sender = jsonNode.get("first").asText();
-                                SharedData.getInstance().getContacts().add(sender);
-                                ListContact.setItems(SharedData.getInstance().getContacts());
+                                if(!Objects.equals(sender,SharedData.getInstance().getData().getName())) {
+                                    System.out.println("456");
+                                    SharedData.getInstance().getContacts().add(sender);
+                                    ListContact.setItems(SharedData.getInstance().getContacts());
+                                }
                             }
 
                     } catch (IOException e) {
