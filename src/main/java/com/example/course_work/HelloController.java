@@ -222,15 +222,22 @@ private TextArea Message;
                         String type;
                         System.out.println(jsonNode.get("type").asText());
                             if(Objects.equals(jsonNode.get("type").asText(), "message")) {
-                                System.out.println("123");
+
+                                String accepter = jsonNode.get("accepter").asText();
+
+
                                 String sender = jsonNode.get("sender").asText();
+                                System.out.println(sender);
+                                System.out.println(AccepterName);
+                                if(Objects.equals(sender, AccepterName)){
+
                                 String message = jsonNode.get("message").asText();
                                 Label UserNameLabel = new Label(sender);
                                 UserNameLabel.setWrapText(true);
                                 UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
                                 MessageLabel.setWrapText(true);
                                 MessageLabel.setStyle("-fx-text-fill: white;");
-                                ;
+
                                 MessageLabel.setText(message);
                                 UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
                                 UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
@@ -249,6 +256,7 @@ private TextArea Message;
                                 UserNameLabel.setManaged(true);
                                 MessageLabel.setVisible(true);
                                 UserNameLabel.setVisible(true);
+                                }
                             }
                             else if(Objects.equals(jsonNode.get("type").asText(), "chat")){
                                 System.out.println("456");
