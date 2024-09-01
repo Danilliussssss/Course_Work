@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Added animation on menu button">
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Add more detail field in class 'Chat'">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/HelloApplication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/HelloApplication.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,10 +78,10 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Danilka/IdeaProjects/Course_Work/pom.xml&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;
   }
 }</component>
   <component name="RunAnythingContextRecentDirectoryCache">
@@ -462,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725155870992</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Add more detail field in class 'Chat'">
+      <option name="closed" value="true" />
+      <created>1725164605895</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1725164605895</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -537,6 +546,7 @@
     <MESSAGE value="Added Contact list" />
     <MESSAGE value="Added send message between 2 users" />
     <MESSAGE value="Added animation on menu button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added animation on menu button" />
+    <MESSAGE value="Add more detail field in class 'Chat'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add more detail field in class 'Chat'" />
   </component>
 </project>

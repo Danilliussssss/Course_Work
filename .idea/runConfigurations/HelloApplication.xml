@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="HelloApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/corretto-19.0.2" />
     <option name="MAIN_CLASS_NAME" value="com.example.course_work.HelloApplication" />
     <module name="Course_Work" />
     <extension name="coverage">

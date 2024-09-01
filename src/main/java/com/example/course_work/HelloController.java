@@ -67,6 +67,7 @@ private TextArea Message;
     String msg;
     ObjectMapper objectMapper = new ObjectMapper();
     String AccepterName;
+    Firebase database = Firebase.getInstance();
 
 
 
@@ -74,8 +75,32 @@ private TextArea Message;
     void initialize() {
 
         User UserData = SharedData.getInstance().getData();
+        CompletableFuture<DataSnapshot> contacts = database.CheckUserData(UserData.getName(),"0/Chats/","yourName");
+        contacts.thenAccept(result->{
+           for(DataSnapshot snapshot: result.getChildren()){
+               System.out.println(snapshot.child("yourName").getValue());
+               System.out.println(UserData.getName());
+               if(Objects.equals(snapshot.child("yourName").getValue(),UserData.getName())){
+
+                   SharedData.getInstance().getContacts().add(snapshot.child("anotherUserName").getValue().toString());
+               System.out.println("76543");
+               }
+           }
+        });
+        CompletableFuture<DataSnapshot> contacts2 = database.CheckUserData(UserData.getName(),"0/Chats/","anotherUserName");
+        contacts2.thenAccept(result->{
+            for(DataSnapshot snapshot: result.getChildren()){
+                System.out.println(snapshot.child("anotherUserName").getValue());
+                System.out.println(UserData.getName());
+                if(Objects.equals(snapshot.child("anotherUserName").getValue(),UserData.getName())){
+
+                    SharedData.getInstance().getContacts().add(snapshot.child("yourName").getValue().toString());
+                    System.out.println("76543");
+                }
+            }
+        });
         ListContact.setItems(SharedData.getInstance().getContacts());
-        
+
         System.out.println(UserData.getName());
         try {
 
