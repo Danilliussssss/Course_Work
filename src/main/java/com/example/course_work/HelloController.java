@@ -75,7 +75,7 @@ private TextArea Message;
 
         User UserData = SharedData.getInstance().getData();
         ListContact.setItems(SharedData.getInstance().getContacts());
-
+        
         System.out.println(UserData.getName());
         try {
 

@@ -61,16 +61,25 @@ WebClient webClient = null;
                            for(DataSnapshot snapshot: result.getChildren()) {
                                User user = snapshot.getValue(User.class);
                                 user.setKey(snapshot.getKey());
-                               System.out.println(user.getPassword());
-                               SharedData.getInstance().setGuestUser(user);
-                               Platform.runLater(()-> {
-                               Chat chat = new Chat(user);
-                              System.out.println(user.getName());
+                             if(SharedData.getInstance().getContacts().indexOf(user.getName())==-1) {
+                                 SharedData.getInstance().setGuestUser(user);
+                                 Platform.runLater(() -> {
+                                     Chat chat = new Chat(user);
+                                     System.out.println(user.getName());
 
-                              SharedData.getInstance().getContacts().add(user.getName());
-                              webClient.sendChat(SharedData.getInstance().getData().getName(),user.getName());
+                                     SharedData.getInstance().getContacts().add(user.getName());
+                                     webClient.sendChat(SharedData.getInstance().getData().getName(), user.getName());
 
-                               });
+                                 });
+                             }
+                             else{
+                                 Platform.runLater(()-> {
+                                     Alert RegError = new Alert(Alert.AlertType.ERROR);
+                                     RegError.setContentText("Контакт уже существует");
+                                     RegError.setTitle("Сообщение о поиске пользователя");
+                                     RegError.showAndWait();
+                                 });
+                             }
 
                            }
 

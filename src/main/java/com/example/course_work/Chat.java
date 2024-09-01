@@ -7,10 +7,13 @@ public class Chat {
 private String ChatID;
 private String hashCode;
 private Firebase database;
+private String YourName;
+private String AnotherUserName;
 
 public Chat(User anotherUser){
 
-
+    YourName = SharedData.getInstance().getData().getName();
+    AnotherUserName =  anotherUser.getName();
     hashCode =SharedData.getInstance().getData().getName()+ anotherUser.getName();
     DatabaseReference MessageRef = Firebase.getInstance().getDatabase().child("/0").child("Chats").push();
     MessageRef.setValueAsync(this);
@@ -18,6 +21,22 @@ public Chat(User anotherUser){
 
 
 }
+
+    public String getYourName() {
+        return YourName;
+    }
+
+    public void setYourName(String yourName) {
+        YourName = yourName;
+    }
+
+    public String getAnotherUserName() {
+        return AnotherUserName;
+    }
+
+    public void setAnotherUserName(String anotherUserName) {
+        AnotherUserName = anotherUserName;
+    }
 
     public String getChatID() {
         return ChatID;
