@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingQueue;
@@ -17,8 +19,7 @@ import java.util.concurrent.CompletableFuture;
 import Animation.Fade;
 import Animation.ScaleTransition;
 import Animation.Shake;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.*;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -78,8 +79,7 @@ private TextArea Message;
         CompletableFuture<DataSnapshot> contacts = database.CheckUserData(UserData.getName(),"0/Chats/","yourName");
         contacts.thenAccept(result->{
            for(DataSnapshot snapshot: result.getChildren()){
-               System.out.println(snapshot.child("yourName").getValue());
-               System.out.println(UserData.getName());
+
                if(Objects.equals(snapshot.child("yourName").getValue(),UserData.getName())){
                    SharedData.getInstance().getContacts().add(snapshot.child("anotherUserName").getValue().toString());
                System.out.println("12345");
@@ -89,8 +89,7 @@ private TextArea Message;
         CompletableFuture<DataSnapshot> contacts2 = database.CheckUserData(UserData.getName(),"0/Chats/","anotherUserName");
         contacts2.thenAccept(result->{
             for(DataSnapshot snapshot: result.getChildren()){
-                System.out.println(snapshot.child("anotherUserName").getValue());
-                System.out.println(UserData.getName());
+
                 if(Objects.equals(snapshot.child("anotherUserName").getValue(),UserData.getName())&&!Objects.equals(snapshot.child("yourName").getValue(),snapshot.child("anotherUserName").getValue())){
 
                     SharedData.getInstance().getContacts().add(snapshot.child("yourName").getValue().toString());
@@ -100,7 +99,7 @@ private TextArea Message;
         });
         ListContact.setItems(SharedData.getInstance().getContacts());
 
-        System.out.println(UserData.getName());
+
         try {
 
             webClient = new WebClient("ws://192.168.0.102:3500",messageService);
@@ -146,9 +145,10 @@ private TextArea Message;
               MessageLabel.setWrapText(true);
               MessageLabel.setStyle("-fx-text-fill: white;");
               MessageLabel.setText(Message.getText());
+
               webClient.sendMessage(UserData.getName(), Message.getText(), AccepterName);
-              DatabaseReference MessageRef = Firebase.getInstance().getDatabase().child("/0").child("Chats").child(UserData.getName()).push();
-              MessageRef.setValueAsync(Message.getText());
+             Message message = new Message(UserData.getName(),Message.getText());
+             message.sendMessage();
               UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
               UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
               MessageLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
@@ -220,10 +220,157 @@ private TextArea Message;
 
       });
   ListContact.getSelectionModel().selectedItemProperty().addListener(((observableValue, OldValue, NewValue) ->{
+
       if(NewValue!=null) {
 
-          System.out.println("Вы выбрали " + NewValue);
+       PaneMessage.getChildren().clear();
+
+
+
           AccepterName = NewValue;
+          CompletableFuture<DataSnapshot> contactsList = database.CheckUserData(NewValue,"0/Chats/","anotherUserName");
+          contactsList.thenAccept(result->{
+              for(DataSnapshot snapshot: result.getChildren()){
+
+                  if(Objects.equals(snapshot.child("yourName").getValue(),UserData.getName())) {
+
+                    SharedData.getInstance().setChatID(snapshot.getKey());
+                          System.out.println(SharedData.getInstance().getChatID());
+
+
+                      DatabaseReference messageRef = FirebaseDatabase.getInstance().getReference("0/Chats/"+SharedData.getInstance().getChatID()+"/message");
+                      System.out.println(messageRef);
+                      messageRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                          @Override
+                          public void onDataChange(DataSnapshot snapshot) {
+                              for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                                  System.out.println(dataSnapshot.getValue());
+                                  Platform.runLater(()->{
+
+                                      double t1,t2;
+                                      MessageLabel = new Label();
+                                      Label UserNameLabel;
+                                      if(Objects.equals(dataSnapshot.child("sender").getValue().toString(),UserData.getName())) {
+                                          UserNameLabel   = new Label("Вы");
+                                          t1 = 25;
+                                          t2 = 25;
+                                      }
+                                      else {
+                                          UserNameLabel = new Label(dataSnapshot.child("sender").getValue().toString());
+                                          t1 = 275;
+                                          t2 = 250;
+                                      }
+                                      UserNameLabel.setWrapText(true);
+                                      UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
+                                      MessageLabel.setWrapText(true);
+                                      MessageLabel.setStyle("-fx-text-fill: white;");
+
+                                      System.out.println(dataSnapshot.child("message").getValue().toString());
+                                      MessageLabel.setText(dataSnapshot.child("message").getValue().toString());
+                                      UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                                      UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+                                      MessageLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+                                      MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                                      FlowPane.setMargin(UserNameLabel, new Insets(0, 0, 0, t1));
+                                      FlowPane.setMargin(MessageLabel, new Insets(-10, 0, 0, t2));
+
+                                      PaneMessage.setVgap(10);
+                                      PaneMessage.getChildren().addAll(UserNameLabel, MessageLabel);
+                                      MessageLabel.setManaged(true);
+                                      UserNameLabel.setManaged(true);
+
+                                      MessageLabel.setVisible(true);
+                                      UserNameLabel.setVisible(true);
+                                  });
+
+
+                              }
+                          }
+
+                          @Override
+                          public void onCancelled(DatabaseError error) {
+                              System.err.println("Ошибка чтения данных: " + error.getMessage());
+                          }
+                      });
+                  }
+
+
+              }
+
+          });
+
+
+
+
+
+             // System.out.println(SharedData.getInstance().getChatID());
+              CompletableFuture<DataSnapshot> contactsList2 = database.CheckUserData(NewValue, "0/Chats/", "yourName");
+              contactsList2.thenAccept(result -> {
+                  for (DataSnapshot snapshot : result.getChildren()) {
+                       if(Objects.equals(snapshot.child("anotherUserName").getValue(),UserData.getName())) {
+                           SharedData.getInstance().setChatID(snapshot.getKey());
+                           System.out.println(SharedData.getInstance().getChatID());
+                           DatabaseReference messageRef = FirebaseDatabase.getInstance().getReference("0/Chats/"+SharedData.getInstance().getChatID()+"/message");
+                           messageRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                               @Override
+                               public void onDataChange(DataSnapshot snapshot) {
+                                   for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                                       System.out.println(dataSnapshot.getValue());
+                                       Platform.runLater(()->{
+                                           double t1,t2;
+                                           MessageLabel = new Label();
+                                           Label UserNameLabel;
+                                           if(Objects.equals(dataSnapshot.child("sender").getValue().toString(),UserData.getName())) {
+                                               UserNameLabel   = new Label("Вы");
+                                                t1 = 25;
+                                                t2 = 25;
+                                           }
+                                           else {
+                                               UserNameLabel = new Label(dataSnapshot.child("sender").getValue().toString());
+                                                t1 = 275;
+                                                t2 = 250;
+                                           }
+                                           UserNameLabel.setWrapText(true);
+                                           UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
+                                           MessageLabel.setWrapText(true);
+                                           MessageLabel.setStyle("-fx-text-fill: white;");
+
+                                           System.out.println(dataSnapshot.child("message").getValue().toString());
+                                           MessageLabel.setText(dataSnapshot.child("message").getValue().toString());
+                                           UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                                           UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+                                           MessageLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
+                                           MessageLabel.setPrefHeight(PaneMessage.getMaxHeight());
+                                           FlowPane.setMargin(UserNameLabel, new Insets(0, 0, 0, t1));
+                                           FlowPane.setMargin(MessageLabel, new Insets(-10, 0, 0, t2));
+
+                                           PaneMessage.setVgap(10);
+                                           PaneMessage.getChildren().addAll(UserNameLabel, MessageLabel);
+                                           MessageLabel.setManaged(true);
+                                           UserNameLabel.setManaged(true);
+
+                                           MessageLabel.setVisible(true);
+                                           UserNameLabel.setVisible(true);
+                                       });
+                                   }
+                               }
+
+                               @Override
+                               public void onCancelled(DatabaseError error) {
+                                   System.err.println("Ошибка чтения данных: " + error.getMessage());
+                               }
+                           });
+
+                       }
+
+
+
+                  }
+              });
+
+
+
+
 
 
 
@@ -286,8 +433,11 @@ private TextArea Message;
 
 
                                 String sender = jsonNode.get("first").asText();
+
                                 if(!Objects.equals(sender,SharedData.getInstance().getData().getName())) {
+                                    SharedData.getInstance().setChatID( jsonNode.get("ChatID").asText());
                                     System.out.println("456");
+                                    System.out.println(SharedData.getInstance().getChatID());
                                     SharedData.getInstance().getContacts().add(sender);
                                     ListContact.setItems(SharedData.getInstance().getContacts());
                                 }

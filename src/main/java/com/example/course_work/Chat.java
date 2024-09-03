@@ -17,6 +17,7 @@ public Chat(User anotherUser){
     hashCode =SharedData.getInstance().getData().getName()+ anotherUser.getName();
     DatabaseReference MessageRef = Firebase.getInstance().getDatabase().child("/0").child("Chats").push();
     MessageRef.setValueAsync(this);
+    ChatID = MessageRef.getKey();
 
 
 

@@ -65,14 +65,17 @@ WebClient webClient = null;
                              if(SharedData.getInstance().getContacts().indexOf(user.getName())==-1) {
                                  SharedData.getInstance().setGuestUser(user);
                                  Platform.runLater(() -> {
-                                    System.out.println(user.getName());
-                                    System.out.println(SharedData.getInstance().getData().getName());
+
 
                                          Chat chat = new Chat(user);
-                                         System.out.println(user.getName());
+
+                                         SharedData.getInstance().setChatID(chat.getChatID());
 
 
-                                         webClient.sendChat(SharedData.getInstance().getData().getName(), user.getName());
+
+
+
+                                         webClient.sendChat(SharedData.getInstance().getData().getName(), user.getName(), chat.getChatID());
 
 
                                  });
