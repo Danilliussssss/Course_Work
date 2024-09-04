@@ -4,17 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="Add contact list in database">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/Message.java" afterDir="false" />
+    <list default="true" id="fe6f3dc7-caf3-4abe-8005-b611d913ec7d" name="Changes" comment="server open for another gadgets">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/codehaus_jackson_mapper_asl1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/java_websocket_Java_WebSocket5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_websocket_client_api1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_09_2024_8_58_[Changes]/HelloController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_09_2024_8_58_[Changes]/module-info.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_09_2024_8_58_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_09_2024_8_58__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_09_2024_12_09_[Changes]/HelloController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_09_2024_12_09_[Changes]/module-info.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_09_2024_12_09_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_09_2024_12_09__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/AddNumController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/HelloController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/module-info.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_3_04_[Changes]/HelloController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_3_04_[Changes]/module-info.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_3_04_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_3_04__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/AddNumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/Chat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/course_work/WebClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/course_work/WebClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/AddNumController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/Chat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/HelloController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/course_work/WebClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/course_work/WebClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +56,12 @@
     &quot;assignee&quot;: &quot;Danilliussssss&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Danilliussssss/Course_Work.git&quot;,
-    &quot;accountId&quot;: &quot;180993e4-2a0b-4ce0-935c-773725fff7d4&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Danilliussssss/Course_Work.git",
+    "accountId": "e4f90ec2-8afc-4c98-8559-ac2178f7a757"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -60,35 +74,36 @@
 }</component>
   <component name="ProjectId" id="2dR0Qxrw1CDeIv0X8GmBiyiEHra" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LocalTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Attach to process.pid 1920.executor&quot;: &quot;ProcessAttachDebug&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Danilka/IdeaProjects/Course_Work/pom.xml&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HelloApplication.executor": "Run",
+    "Application.LocalTest.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "Attach to process.pid 1920.executor": "ProcessAttachDebug",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Danilka/IdeaProjects/Course_Work/pom.xml",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingContextRecentDirectoryCache">
     <option name="paths">
       <recentPaths value="$PROJECT_DIR$" />
@@ -460,39 +475,7 @@
       <option name="project" value="LOCAL" />
       <updated>1725109383861</updated>
     </task>
-    <task id="LOCAL-00041" summary="Added animation on menu button">
-      <option name="closed" value="true" />
-      <created>1725155870992</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1725155870992</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Add more detail field in class 'Chat'">
-      <option name="closed" value="true" />
-      <created>1725164605895</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1725164605895</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Add contact list in database">
-      <option name="closed" value="true" />
-      <created>1725175984521</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1725175984521</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Add contact list in database">
-      <option name="closed" value="true" />
-      <created>1725187041690</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1725187041690</updated>
-    </task>
-    <option name="localTasksCounter" value="45" />
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,8 +550,7 @@
     <MESSAGE value="Added Contact list" />
     <MESSAGE value="Added send message between 2 users" />
     <MESSAGE value="Added animation on menu button" />
-    <MESSAGE value="Add more detail field in class 'Chat'" />
-    <MESSAGE value="Add contact list in database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add contact list in database" />
+    <MESSAGE value="server open for another gadgets" />
+    <option name="LAST_COMMIT_MESSAGE" value="server open for another gadgets" />
   </component>
 </project>

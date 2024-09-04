@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]" date="1725110958074" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 31.08.2024 20:29 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/example/course_work/AddNumController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/example/course_work/AddNumController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/AddNumController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/module-info.class" />
+    <option name="AFTER_PATH" value="target/classes/module-info.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/module-info.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/example/course_work/HelloController.class" />
+    <option name="AFTER_PATH" value="target/classes/com/example/course_work/HelloController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_08_2024_20_29_[Changes]/HelloController.class" />
+  </binary>
+</changelist>

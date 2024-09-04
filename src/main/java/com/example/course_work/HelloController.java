@@ -102,7 +102,7 @@ private TextArea Message;
 
         try {
 
-            webClient = new WebClient("ws://192.168.0.102:3500",messageService);
+            webClient = new WebClient("ws://5.166.67.114:3500",messageService);
             webClient.connectBlocking();
             webClient.loginServer(UserData.getName());
            new Thread(this::handle).start();
@@ -393,22 +393,15 @@ private TextArea Message;
                         String type;
                         System.out.println(jsonNode.get("type").asText());
                             if(Objects.equals(jsonNode.get("type").asText(), "message")) {
-
-                                String accepter = jsonNode.get("accepter").asText();
-
-
+                                System.out.println("123");
                                 String sender = jsonNode.get("sender").asText();
-                                System.out.println(sender);
-                                System.out.println(AccepterName);
-                                if(Objects.equals(sender, AccepterName)){
-
                                 String message = jsonNode.get("message").asText();
                                 Label UserNameLabel = new Label(sender);
                                 UserNameLabel.setWrapText(true);
                                 UserNameLabel.setStyle("-fx-text-fill: grey;-fx-font-family: 'Arial';-fx-font-style: italic;");
                                 MessageLabel.setWrapText(true);
                                 MessageLabel.setStyle("-fx-text-fill: white;");
-
+                                ;
                                 MessageLabel.setText(message);
                                 UserNameLabel.setPrefHeight(PaneMessage.getMaxHeight());
                                 UserNameLabel.setPrefWidth(PaneMessage.getPrefWidth() - 100);
@@ -427,7 +420,6 @@ private TextArea Message;
                                 UserNameLabel.setManaged(true);
                                 MessageLabel.setVisible(true);
                                 UserNameLabel.setVisible(true);
-                                }
                             }
                             else if(Objects.equals(jsonNode.get("type").asText(), "chat")){
 
